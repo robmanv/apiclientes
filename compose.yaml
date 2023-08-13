@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-instance
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass_vellasques
+      MYSQL_DATABASE: database_vellasques
+      MYSQL_USER: user_vellasques
+      MYSQL_PASSWORD: pass_vellasquess
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

@@ -1,0 +1,44 @@
+jpa:
+    default:
+        packages-to-scan:
+            - 'com.vellasques.apiclientes'
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: none
+                show_sql: true
+flyway:
+    locations: classpath:db/migration
+
+spring:
+    datasource:
+        url: ${DATABASE_URL:jdbc:mysql://localhost:3306/database_vellasques}
+        username: ${DATABASE_USERNAME:user_vellasques}
+        password: ${DATABASE_PASSWORD:pass_vellasquess}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+            maximum-pool-size: 10
+#        url: jdbc:h2:file:./test
+#        username: sa
+#        password: ''
+#        driver-class-name: org.h2.Driver
+
+    security:
+        user:
+            name: user
+            password: senhasecreta
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*" # Expor todos os endpoints do Actuator
+            base-path: /actuator # Rota base para os endpoints do Actuator
+    endpoint:
+        health:
+            show-details: always # Exibir detalhes completos no endpoint de health
+        info:
+            enabled: true # Habilitar o endpoint de informações personalizadas
+    security:
+        enabled: false # Desabilitar a segurança para todos os endpoints do Actuator (não recomendado em produção)
+
